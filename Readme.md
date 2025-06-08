@@ -1,118 +1,112 @@
-# Resilient Email Sending Service
+This project simulates a fault-tolerant email service using JavaScript, incorporating several production-grade patterns such as retry mechanisms, fallback logic, circuit breakers, and rate limiting. It uses mock email providers for simulation purposes—ideal for learning and testing without relying on external APIs.
 
-A fault-tolerant email service simulation in **JavaScript** that mimics production-grade email systems using retry logic, fallback mechanisms, circuit breakers, and more. Uses mock providers instead of real email APIs.
+Features
+The system is designed to handle failures gracefully and includes the following capabilities:
 
----
+Retry logic with exponential backoff
 
-## 🚀 Features
+Provider fallback in case of repeated failures
 
-* ✅ Retry with Exponential Backoff
-* ✅ Fallback Between Providers
-* ✅ Circuit Breaker Per Provider
-* ✅ Idempotency via `emailId`
-* ✅ Basic Rate Limiting (5 emails/sec)
-* ✅ Status Tracking (`SENT`, `FAILED`, `UNKNOWN`)
-* ✅ Simple Logging
-* ✅ Mock Providers (for simulation)
+Circuit breaker per provider with automatic reset
 
----
+Idempotency support using a unique emailId
 
-## 🛠 Setup Instructions
+Basic rate limiting (maximum 5 emails per second)
 
-### 1. Clone or Create Project Folder
+Status tracking for email operations (SENT, FAILED, UNKNOWN)
 
-```bash
-mkdir resilient-email-service && cd resilient-email-service
-code .  # Opens VS Code
-```
+In-memory logging for visibility into operations
 
-### 2. Initialize Node Project
+Mock email providers to simulate real-world failure/success scenarios
 
-```bash
+Getting Started
+Follow the steps below to set up and run the project:
+
+Step 1: Create Project Directory
+bash
+Copy
+Edit
+mkdir resilient-email-service
+cd resilient-email-service
+code .
+Step 2: Initialize Node.js Project
+bash
+Copy
+Edit
 npm init -y
-```
-
-### 3. Install Dev Dependencies
-
-```bash
+Step 3: Install Testing Library
+bash
+Copy
+Edit
 npm install --save-dev jest
-```
+Step 4: Add Source Files
+Create the following files in your project directory:
 
-### 4. Add Files
+EmailService.js: Core logic of the email service
 
-* `EmailService.js`: Contains the main service and supporting classes
-* `index.js`: Sample usage for manual testing
-* `EmailService.test.js`: Unit tests
+index.js: Example usage for manual testing
 
-### 5. Update package.json for Testing
+EmailService.test.js: Unit tests
 
-```json
+Step 5: Update Package Scripts
+In your package.json, add the test script:
+
+json
+Copy
+Edit
 "scripts": {
   "test": "jest"
 }
-```
-
-### 6. Run the App
-
-```bash
+Step 6: Run the Application
+bash
+Copy
+Edit
 node index.js
-```
-
-### 7. Run the Tests
-
-```bash
+Step 7: Execute Unit Tests
+bash
+Copy
+Edit
 npm test
-```
-
----
-
-## 📁 File Structure
-
-```
+Project Structure
+bash
+Copy
+Edit
 resilient-email-service/
-├── EmailService.js         # Main email service logic
-├── index.js                # Example usage
-├── EmailService.test.js    # Unit tests
-└── package.json            # NPM config
-```
+├── EmailService.js         # Main email service implementation
+├── index.js                # Entry point and example execution
+├── EmailService.test.js    # Jest test suite
+└── package.json            # Project configuration
+Design Assumptions
+The service uses two mock providers. One of them (e.g., ProviderA) simulates a 50% failure rate.
 
----
+Idempotency is managed in-memory using a Set. In real-world scenarios, you’d likely use Redis or another persistent store.
 
-## 📌 Assumptions
+The rate limiter allows up to 5 emails per second.
 
-* Two mock providers simulate success/failure (e.g., ProviderA with 50% fail rate).
-* Idempotency is stored in memory (using a `Set`). In production, a persistent store like Redis would be used.
-* Rate limiting is fixed to 5 emails per second.
-* Circuit breaker opens after 3 consecutive failures and resets after 10 seconds.
+Each provider has a circuit breaker that opens after 3 consecutive failures and resets after 10 seconds.
 
----
+Workflow Summary
+sendEmail(emailId, to, content) is called.
 
-## 🔍 How it Works
+The first provider attempts to send the email with retry logic using exponential backoff.
 
-1. Call `sendEmail(emailId, to, content)`
-2. It tries provider 1 with retries (with exponential backoff)
-3. If it fails, it falls back to provider 2
-4. Prevents re-sending same email (idempotent)
-5. If rate limit exceeded, the request is queued
-6. Tracks and logs status of every attempt
+If it fails, the system automatically falls back to the second provider.
 
----
+Duplicate email attempts are avoided using emailId (idempotency).
 
-## ✅ Example Output
+Rate limits are enforced, and excess requests are queued.
 
-```
+The result of each attempt is logged and tracked.
+
+Example Output
+vbnet
+Copy
+Edit
 [EmailService] 2025-06-08T02:29:07.068Z: Provider ProviderA failed: ProviderA failed to send email.
 [EmailService] 2025-06-08T02:29:07.581Z: ProviderB sent email to test@example.com
 Send result: ProviderB sent email to test@example.com
 Status: SENT
-```
-
----
-
-## 👨‍🔬 Author
-
+Author
 Mohammad Rizwan
 
----
-
-
+For feedback or collaboration, feel free to reach out via GitHub or LinkedIn.
