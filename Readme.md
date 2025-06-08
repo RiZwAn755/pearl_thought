@@ -1,17 +1,10 @@
-<<<<<<< HEAD
+
 #Pearl_Thoughts Task
 
 A reliable email service built with JavaScript that works like real-world systems. It includes features like retrying failed attempts, switching to backup providers, and stopping repeated failures. It uses fake email providers for testing instead of real ones
-=======
-This project simulates a fault-tolerant email service using JavaScript, incorporating several production-grade patterns such as retry mechanisms, fallback logic, circuit breakers, and rate limiting. It uses mock email providers for simulation purposes—ideal for learning and testing without relying on external APIs.
-
-Features
-The system is designed to handle failures gracefully and includes the following capabilities:
->>>>>>> e70a1743991f7134f5c21c971070aa7797b9b6a3
 
 Retry logic with exponential backoff
 
-<<<<<<< HEAD
 ##  Features
 
 * Retry with Exponential Backoff
@@ -22,30 +15,21 @@ Retry logic with exponential backoff
 *  Status Tracking (`SENT`, `FAILED`, `UNKNOWN`)
 *  Simple Logging
 *  Mock Providers (for simulation)
-=======
-Provider fallback in case of repeated failures
 
-Circuit breaker per provider with automatic reset
->>>>>>> e70a1743991f7134f5c21c971070aa7797b9b6a3
+
 
 Idempotency support using a unique emailId
 
-<<<<<<< HEAD
+
 ##  Setup Instructions
-=======
-Basic rate limiting (maximum 5 emails per second)
->>>>>>> e70a1743991f7134f5c21c971070aa7797b9b6a3
+
 
 Status tracking for email operations (SENT, FAILED, UNKNOWN)
 
-<<<<<<< HEAD
 ```bash
 mkdir pearl_task && cd pearl_task
 code .  # Open this Code in vs code
 ```
-=======
-In-memory logging for visibility into operations
->>>>>>> e70a1743991f7134f5c21c971070aa7797b9b6a3
 
 Mock email providers to simulate real-world failure/success scenarios
 
@@ -64,18 +48,12 @@ bash
 Copy
 Edit
 npm init -y
-<<<<<<< HEAD
+
 ```
 
 ### 3. Install  Dependencies
 
 ```bash
-=======
-Step 3: Install Testing Library
-bash
-Copy
-Edit
->>>>>>> e70a1743991f7134f5c21c971070aa7797b9b6a3
 npm install --save-dev jest
 Step 4: Add Source Files
 Create the following files in your project directory:
@@ -164,6 +142,6 @@ Status: SENT
 
 Created by- 
 Mohammad Rizwan :)
-=======
+
 
 For feedback or collaboration, feel free to reach out via GitHub or LinkedIn.
