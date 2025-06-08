@@ -1,29 +1,29 @@
-# Resilient Email Sending Service
+#Pearl_Thoughts Task
 
-A fault-tolerant email service simulation in **JavaScript** that mimics production-grade email systems using retry logic, fallback mechanisms, circuit breakers, and more. Uses mock providers instead of real email APIs.
-
----
-
-## 🚀 Features
-
-* ✅ Retry with Exponential Backoff
-* ✅ Fallback Between Providers
-* ✅ Circuit Breaker Per Provider
-* ✅ Idempotency via `emailId`
-* ✅ Basic Rate Limiting (5 emails/sec)
-* ✅ Status Tracking (`SENT`, `FAILED`, `UNKNOWN`)
-* ✅ Simple Logging
-* ✅ Mock Providers (for simulation)
+A reliable email service built with JavaScript that works like real-world systems. It includes features like retrying failed attempts, switching to backup providers, and stopping repeated failures. It uses fake email providers for testing instead of real ones
 
 ---
 
-## 🛠 Setup Instructions
+##  Features
+
+* Retry with Exponential Backoff
+*  Fallback Between Providers
+*  Circuit Breaker Per Provider
+*  Idempotency via `emailId`
+*  Basic Rate Limiting (5 emails/sec)
+*  Status Tracking (`SENT`, `FAILED`, `UNKNOWN`)
+*  Simple Logging
+*  Mock Providers (for simulation)
+
+---
+
+##  Setup Instructions
 
 ### 1. Clone or Create Project Folder
 
 ```bash
-mkdir resilient-email-service && cd resilient-email-service
-code .  # Opens VS Code
+mkdir pearl_task && cd pearl_task
+code .  # Open this Code in vs code
 ```
 
 ### 2. Initialize Node Project
@@ -32,7 +32,7 @@ code .  # Opens VS Code
 npm init -y
 ```
 
-### 3. Install Dev Dependencies
+### 3. Install  Dependencies
 
 ```bash
 npm install --save-dev jest
@@ -52,7 +52,7 @@ npm install --save-dev jest
 }
 ```
 
-### 6. Run the App
+### 6. start the project
 
 ```bash
 node index.js
@@ -66,10 +66,10 @@ npm test
 
 ---
 
-## 📁 File Structure
+## File Structure of this project
 
 ```
-resilient-email-service/
+pearl_task/
 ├── EmailService.js         # Main email service logic
 ├── index.js                # Example usage
 ├── EmailService.test.js    # Unit tests
@@ -78,7 +78,7 @@ resilient-email-service/
 
 ---
 
-## 📌 Assumptions
+##  Assumptions that I made
 
 * Two mock providers simulate success/failure (e.g., ProviderA with 50% fail rate).
 * Idempotency is stored in memory (using a `Set`). In production, a persistent store like Redis would be used.
@@ -87,7 +87,7 @@ resilient-email-service/
 
 ---
 
-## 🔍 How it Works
+## working
 
 1. Call `sendEmail(emailId, to, content)`
 2. It tries provider 1 with retries (with exponential backoff)
@@ -98,7 +98,7 @@ resilient-email-service/
 
 ---
 
-## ✅ Example Output
+##  Example Output
 
 ```
 [EmailService] 2025-06-08T02:29:07.068Z: Provider ProviderA failed: ProviderA failed to send email.
@@ -109,9 +109,9 @@ Status: SENT
 
 ---
 
-## 👨‍🔬 Author
 
-Mohammad Rizwan
+Created by- 
+Mohammad Rizwan :)
 
 ---
 
